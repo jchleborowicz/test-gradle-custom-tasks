@@ -1,8 +1,24 @@
-task hello {
+class Greeting extends DefaultTask {
+    String message
+    String recipient
+
+    @TaskAction
+    void sayGreeting() {
+        println "${message}, ${recipient}!"
+    }
+}
+
+task hello (type: Greeting) {
     group 'Welcome'
     description 'Produces a greeting'
 
-    doLast {
-        println 'Hello, World!'
-    }
+    message 'Hello'
+    recipient 'World'
+}
+
+task gutenTag (type: Greeting) {
+    group 'Welcome'
+    description 'Produces a German greeting'
+    message 'Guten Tag'
+    recipient 'Weld'
 }
